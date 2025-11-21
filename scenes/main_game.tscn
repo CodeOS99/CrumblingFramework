@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://csh7mpin7pig6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4h7yt"]
+sky_top_color = Color(0.835235, 0.73255, 0.366848, 1)
+sky_horizon_color = Color(0.52195, 0.632419, 1, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_2qscl"]
+sky_material = SubResource("ProceduralSkyMaterial_4h7yt")
+
+[sub_resource type="Environment" id="Environment_13nt3"]
+background_mode = 2
+sky = SubResource("Sky_2qscl")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_6yfrd"]
+size = Vector3(30, 0.45, 30)
+
+[node name="MainGame" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_13nt3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6yfrd")

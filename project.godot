@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[gui]
+
+theme/custom_font="res://assets/fonts/HandwritingDraftFreeVersion-9zlL.ttf"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
