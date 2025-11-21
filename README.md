@@ -1,3 +1,3 @@
-# Crumbling Scaffold
+# Half Baked
 
- A short platformer about platforming into an unfinished building. 
+Hello, developer. I hope you can finish my game for me.

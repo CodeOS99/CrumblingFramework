@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://csh7mpin7pig6"]
+[gd_scene load_steps=11 format=3 uid="uid://csh7mpin7pig6"]
 
 [ext_resource type="PackedScene" uid="uid://va5r6sdd2y6c" path="res://scenes/player.tscn" id="1_d1c0c"]
+[ext_resource type="FontFile" uid="uid://cg3m37bqjb0b4" path="res://assets/fonts/RobotoMono-Regular.ttf" id="2_fgkx8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4h7yt"]
 sky_top_color = Color(0.835235, 0.73255, 0.366848, 1)
@@ -21,6 +22,16 @@ size = Vector3(30, 0.45, 30)
 [sub_resource type="BoxShape3D" id="BoxShape3D_aqklh"]
 size = Vector3(30, 0.45, 30)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pfwrm"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ts444"]
+width = 1
+height = 1
+noise = SubResource("FastNoiseLite_pfwrm")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cv11a"]
+viewport_path = NodePath("SubViewport")
+
 [node name="MainGame" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -31,7 +42,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_d1c0c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18917, 7.61285, -0.179385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.45046, 7.61285, -0.179385)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -41,3 +52,30 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_aqklh")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(2127, 1062)
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_ts444")
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_right = 315.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_fgkx8")
+theme_override_font_sizes/font_size = 75
+text = "// TODO
+
+// 1. Get rid of bugs
+// 2. Add polish
+// 3. Check if dev paths work to finish game"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.22916, -17.5125)
+texture = SubResource("ViewportTexture_cv11a")
