@@ -17,8 +17,15 @@ const FOV_CHANGE = 1.5
 
 var gravity = 9.8
 
+var can_interact := false
+var interact_body: Node3D
+
+var curr_ray_coll: Node3D
+
 @onready var head := $Head
 @onready var camera := $Head/Camera3D
+@onready var raycast := $Head/Camera3D/RayCast3D
+@onready var interact_label := $CanvasLayer/HUD/InteractLabel
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -27,7 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -62,6 +69,16 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerp(camera.fov, target_fov, delta*8.0)
 	
 	move_and_slide()
+
+func _process(delta: float) -> void:
+	can_interact = false
+	if raycast.is_colliding():
+		curr_ray_coll = raycast.get_collider()
+		if curr_ray_coll.is_in_group("bug"):
+			can_interact = true
+			interact_body = curr_ray_coll
+	
+	interact_label.visible = can_interact
 
 func _headbob(time: float) -> Vector3:
 	var pos = Vector3.ZERO

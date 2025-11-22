@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://csh7mpin7pig6"]
+[gd_scene load_steps=17 format=3 uid="uid://csh7mpin7pig6"]
 
+[ext_resource type="Script" path="res://scripts/static_bug.gd" id="1_3tejf"]
 [ext_resource type="PackedScene" uid="uid://b0m27sbha1u6l" path="res://assets/bug/scene.gltf" id="1_7ckel"]
 [ext_resource type="PackedScene" uid="uid://va5r6sdd2y6c" path="res://scenes/player.tscn" id="1_d1c0c"]
 [ext_resource type="FontFile" uid="uid://cg3m37bqjb0b4" path="res://assets/fonts/RobotoMono-Regular.ttf" id="2_fgkx8"]
@@ -106,6 +107,10 @@ _data = {
 "Animation": SubResource("Animation_35n46")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eixur"]
+radius = 0.8
+height = 2.8697
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4h7yt"]
 sky_top_color = Color(0.835235, 0.73255, 0.366848, 1)
 sky_horizon_color = Color(0.52195, 0.632419, 1, 1)
@@ -137,32 +142,39 @@ viewport_path = NodePath("SubViewport")
 
 [node name="MainGame" type="Node3D"]
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_7ckel")]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -14.6458, 0.225, -8.80306)
+[node name="StaticBug" type="StaticBody3D" parent="." groups=["bug"]]
+script = ExtResource("1_3tejf")
 
-[node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_002_13/GLTF_created_0" index="0"]
-bones/1/rotation = Quaternion(0.39993, 0.01121, 0.586866, 0.703931)
-bones/2/rotation = Quaternion(0.583779, -0.23613, -0.276481, 0.72595)
-bones/3/rotation = Quaternion(0.115176, -0.294092, 0.5105, 0.799771)
-bones/4/rotation = Quaternion(0.713565, -0.248341, 0.200711, 0.623593)
-bones/5/rotation = Quaternion(0.181212, -0.236812, 0.597449, 0.744404)
-bones/6/rotation = Quaternion(0.534122, -0.189601, 0.236766, 0.789117)
-bones/7/rotation = Quaternion(0.531253, 0.591309, -0.248685, 0.553426)
-bones/8/rotation = Quaternion(-0.0660321, 0.341518, 0.785995, 0.511093)
-bones/9/rotation = Quaternion(0.614034, 0.696877, -0.186692, 0.320111)
-bones/10/rotation = Quaternion(0.189816, 0.00580678, 0.601604, 0.775892)
-bones/11/rotation = Quaternion(0.545798, 0.700948, 0.202267, -0.412146)
-bones/12/rotation = Quaternion(-0.653912, 0.417748, 0.166339, 0.608454)
+[node name="Sketchfab_Scene" parent="StaticBug" instance=ExtResource("1_7ckel")]
+transform = Transform3D(-0.145, 1.26763e-08, 0, -1.26763e-08, -0.145, 0, 0, 0, 0.145, -5.372, 0.794162, -5.90843)
 
-[node name="Plane_001_14" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode" index="1"]
-transform = Transform3D(0.999149, -0.0183665, 0.0369421, 0.0233442, 0.989992, -0.139181, -0.0340161, 0.139925, 0.989578, 18.2526, 2.93714, 1.49293)
+[node name="Skeleton3D" parent="StaticBug/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_002_13/GLTF_created_0" index="0"]
+bones/1/rotation = Quaternion(0.109761, 0.115664, 0.57318, 0.803766)
+bones/2/rotation = Quaternion(0.750297, -0.389736, 0.0798541, 0.527999)
+bones/3/rotation = Quaternion(0.266369, -0.184332, 0.519893, 0.79043)
+bones/4/rotation = Quaternion(0.579775, -0.193721, 0.354658, 0.707496)
+bones/5/rotation = Quaternion(0.0646014, -0.392018, 0.537638, 0.743703)
+bones/6/rotation = Quaternion(0.657786, -0.333052, 0.284953, 0.612532)
+bones/7/rotation = Quaternion(0.730606, 0.571202, 0.0934669, 0.362225)
+bones/8/rotation = Quaternion(-0.311567, -0.138732, 0.524645, 0.780017)
+bones/9/rotation = Quaternion(0.604389, 0.790091, -0.0632997, 0.0803925)
+bones/10/rotation = Quaternion(-0.159689, 0.222465, 0.679996, 0.680157)
+bones/11/rotation = Quaternion(0.559497, 0.729567, 0.319567, -0.229286)
+bones/12/rotation = Quaternion(-0.5271, 0.429925, 0.186587, 0.708884)
 
-[node name="AnimationPlayer" parent="Sketchfab_Scene" index="1"]
+[node name="Plane_001_14" parent="StaticBug/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode" index="1"]
+transform = Transform3D(0.996786, 0.0629072, 0.0495988, -0.0573357, 0.992636, -0.106706, -0.0559461, 0.103519, 0.993053, 18.2526, 2.93714, 1.49293)
+
+[node name="AnimationPlayer" parent="StaticBug/Sketchfab_Scene" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_sg2d0")
 }
 autoplay = "Animation"
 speed_scale = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBug"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8.18778, 0.0970021, -5.64083)
+shape = SubResource("CapsuleShape3D_eixur")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_13nt3")
@@ -211,4 +223,4 @@ script = ExtResource("3_q3g2n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.22916, -17.5125)
 texture = SubResource("ViewportTexture_cv11a")
 
-[editable path="Sketchfab_Scene"]
+[editable path="StaticBug/Sketchfab_Scene"]
