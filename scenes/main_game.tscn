@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://csh7mpin7pig6"]
+[gd_scene load_steps=12 format=3 uid="uid://csh7mpin7pig6"]
 
 [ext_resource type="PackedScene" uid="uid://va5r6sdd2y6c" path="res://scenes/player.tscn" id="1_d1c0c"]
 [ext_resource type="FontFile" uid="uid://cg3m37bqjb0b4" path="res://assets/fonts/RobotoMono-Regular.ttf" id="2_fgkx8"]
+[ext_resource type="Script" path="res://scripts/todo_list.gd" id="3_q3g2n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4h7yt"]
 sky_top_color = Color(0.835235, 0.73255, 0.366848, 1)
@@ -64,7 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ts444")
 
-[node name="Label" type="Label" parent="SubViewport"]
+[node name="TodoList" type="Label" parent="SubViewport"]
 offset_right = 315.0
 offset_bottom = 100.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
@@ -75,6 +76,7 @@ text = "// TODO
 // 1. Get rid of bugs
 // 2. Add polish
 // 3. Check if dev paths work to finish game"
+script = ExtResource("3_q3g2n")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.22916, -17.5125)
