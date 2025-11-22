@@ -79,6 +79,9 @@ func _process(delta: float) -> void:
 			interact_body = curr_ray_coll
 	
 	interact_label.visible = can_interact
+	
+	if can_interact and Input.is_action_pressed("interact"):
+		interact_body.interact()
 
 func _headbob(time: float) -> Vector3:
 	var pos = Vector3.ZERO

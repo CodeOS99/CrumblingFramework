@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://csh7mpin7pig6"]
+[gd_scene load_steps=19 format=3 uid="uid://csh7mpin7pig6"]
 
 [ext_resource type="Script" path="res://scripts/static_bug.gd" id="1_3tejf"]
 [ext_resource type="PackedScene" uid="uid://b0m27sbha1u6l" path="res://assets/bug/scene.gltf" id="1_7ckel"]
@@ -111,6 +111,14 @@ _data = {
 radius = 0.8
 height = 2.8697
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66b37"]
+albedo_color = Color(0.136362, 9.40054e-08, 1.8049e-08, 1)
+metallic = 0.85
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_0k6vt"]
+size = Vector3(1.45, 0.23, 1.57)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4h7yt"]
 sky_top_color = Color(0.835235, 0.73255, 0.366848, 1)
 sky_horizon_color = Color(0.52195, 0.632419, 1, 1)
@@ -143,12 +151,13 @@ viewport_path = NodePath("SubViewport")
 [node name="MainGame" type="Node3D"]
 
 [node name="StaticBug" type="StaticBody3D" parent="." groups=["bug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.372, 0.794, -5.908)
 script = ExtResource("1_3tejf")
 
-[node name="Sketchfab_Scene" parent="StaticBug" instance=ExtResource("1_7ckel")]
-transform = Transform3D(-0.145, 1.26763e-08, 0, -1.26763e-08, -0.145, 0, 0, 0, 0.145, -5.372, 0.794162, -5.90843)
+[node name="MainMesh" parent="StaticBug" instance=ExtResource("1_7ckel")]
+transform = Transform3D(-0.145, 1.26763e-08, 0, -1.26763e-08, -0.145, 0, 0, 0, 0.145, 0, 0, 0)
 
-[node name="Skeleton3D" parent="StaticBug/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_002_13/GLTF_created_0" index="0"]
+[node name="Skeleton3D" parent="StaticBug/MainMesh/Sketchfab_model/root/GLTF_SceneRootNode/Armature_002_13/GLTF_created_0" index="0"]
 bones/1/rotation = Quaternion(0.109761, 0.115664, 0.57318, 0.803766)
 bones/2/rotation = Quaternion(0.750297, -0.389736, 0.0798541, 0.527999)
 bones/3/rotation = Quaternion(0.266369, -0.184332, 0.519893, 0.79043)
@@ -162,10 +171,10 @@ bones/10/rotation = Quaternion(-0.159689, 0.222465, 0.679996, 0.680157)
 bones/11/rotation = Quaternion(0.559497, 0.729567, 0.319567, -0.229286)
 bones/12/rotation = Quaternion(-0.5271, 0.429925, 0.186587, 0.708884)
 
-[node name="Plane_001_14" parent="StaticBug/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode" index="1"]
+[node name="Plane_001_14" parent="StaticBug/MainMesh/Sketchfab_model/root/GLTF_SceneRootNode" index="1"]
 transform = Transform3D(0.996786, 0.0629072, 0.0495988, -0.0573357, 0.992636, -0.106706, -0.0559461, 0.103519, 0.993053, 18.2526, 2.93714, 1.49293)
 
-[node name="AnimationPlayer" parent="StaticBug/Sketchfab_Scene" index="1"]
+[node name="AnimationPlayer" parent="StaticBug/MainMesh" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_sg2d0")
 }
@@ -173,8 +182,16 @@ autoplay = "Animation"
 speed_scale = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBug"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8.18778, 0.0970021, -5.64083)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.6685, -0.312737, 0.50695)
 shape = SubResource("CapsuleShape3D_eixur")
+
+[node name="DeadMesh" type="Node3D" parent="StaticBug"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBug/DeadMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.72922, -0.478125, 0.299867)
+material_override = SubResource("StandardMaterial3D_66b37")
+mesh = SubResource("BoxMesh_0k6vt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_13nt3")
@@ -223,4 +240,4 @@ script = ExtResource("3_q3g2n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.22916, -17.5125)
 texture = SubResource("ViewportTexture_cv11a")
 
-[editable path="StaticBug/Sketchfab_Scene"]
+[editable path="StaticBug/MainMesh"]
