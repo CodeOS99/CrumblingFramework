@@ -156,6 +156,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.076, 0, 7.49708)
 movement_area = NodePath("../StaticBody3D/MeshInstance3D")
 movement_speed = 15.0
 
+[node name="MovingBug2" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77794, 0, 21.6247)
+movement_area = NodePath("../StaticBody3D/MeshInstance3D")
+movement_speed = 15.0
+
+[node name="MovingBug3" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.6355, 0, -1.57773)
+movement_area = NodePath("../StaticBody3D/MeshInstance3D")
+movement_speed = 15.0
+
+[node name="MovingBug4" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.587, 0, 18.8135)
+movement_area = NodePath("../StaticBody3D/MeshInstance3D")
+movement_speed = 15.0
+
+[node name="MovingBug5" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3291, 0, 1.35544)
+movement_area = NodePath("../StaticBody3D/MeshInstance3D")
+movement_speed = 15.0
+
 [node name="StaticBug" type="StaticBody3D" parent="." groups=["bug"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.372, 0.794, -5.908)
 script = ExtResource("1_3tejf")

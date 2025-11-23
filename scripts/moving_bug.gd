@@ -14,7 +14,7 @@ func _ready() -> void:
 	choose_new_target()
 
 func _physics_process(delta: float) -> void:
-	if is_moving and movement_area and $MainMesh.visible:
+	if is_moving and movement_area and animation_player.speed_scale == 2:
 		var direction = (target_position - global_position).normalized()
 		direction.y = 0
 		
@@ -53,7 +53,10 @@ func interact():
 	i.global_position.x -= 2.27
 	i.emitting = true
 	animation_player.speed_scale = 8
-	$MainMesh.rotation.z = -180
+	$MainMesh.rotation.z = deg_to_rad(-180)
+	$MainMesh.rotation.x = 0
+	$MainMesh.rotation.y = 0
+	$MainMesh.position = Vector3(2.587, 0.217, -0.281)
 	
 	var t = get_tree().create_timer(4)
 	t.timeout.connect(func():
