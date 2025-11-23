@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://nk7012gajl4g"]
+
+[ext_resource type="Script" path="res://scripts/floating_up_label_3d.gd" id="1_vea3s"]
+
+[node name="FloatingUpLabel3D" type="Label3D"]
+billboard = 1
+text = "Floating Up Text"
+font_size = 48
+script = ExtResource("1_vea3s")

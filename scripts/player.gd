@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 var speed
 const WALK_SPEED := 5.0
@@ -29,6 +29,7 @@ var curr_ray_coll: Node3D
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Globals.player = self
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

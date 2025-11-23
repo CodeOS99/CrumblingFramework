@@ -240,7 +240,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_aqklh")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(2127, 1062)
+size = Vector2i(2407, 1062)
 
 [node name="TextureRect" type="TextureRect" parent="SubViewport"]
 anchors_preset = 15
@@ -259,7 +259,7 @@ theme_override_font_sizes/font_size = 75
 text = "// TODO
 
 // 1. Get rid of bugs
-// 2. Add polish
+// 2. Fix cracks which leaked through development
 // 3. Check if dev paths work to finish game"
 script = ExtResource("3_q3g2n")
 
