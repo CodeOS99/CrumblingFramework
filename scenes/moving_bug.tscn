@@ -104,10 +104,6 @@ _data = {
 "Animation": SubResource("Animation_35n46")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jjbwl"]
-radius = 0.8
-height = 2.8697
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ww4lo"]
 albedo_color = Color(0.136362, 9.40054e-08, 1.8049e-08, 1)
 metallic = 0.85
@@ -116,6 +112,9 @@ roughness = 0.0
 [sub_resource type="BoxMesh" id="BoxMesh_pqrb0"]
 size = Vector3(1.45, 0.23, 1.57)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8owrw"]
+size = Vector3(1.15869, 0.606323, 1.36572)
+
 [node name="MovingBug" type="CharacterBody3D" groups=["bug"]]
 script = ExtResource("1_615gy")
 
@@ -123,21 +122,21 @@ script = ExtResource("1_615gy")
 transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -2.74471, 0, 0)
 
 [node name="Skeleton3D" parent="MainMesh/Sketchfab_model/root/GLTF_SceneRootNode/Armature_002_13/GLTF_created_0" index="0"]
-bones/1/rotation = Quaternion(0.109038, 0.116115, 0.573758, 0.803386)
-bones/2/rotation = Quaternion(0.750481, -0.389978, 0.0806087, 0.527445)
-bones/3/rotation = Quaternion(0.266727, -0.184042, 0.519683, 0.790516)
-bones/4/rotation = Quaternion(0.579452, -0.193591, 0.354973, 0.707638)
-bones/5/rotation = Quaternion(0.0645125, -0.392402, 0.538173, 0.743121)
-bones/6/rotation = Quaternion(0.658005, -0.333339, 0.285036, 0.612103)
-bones/7/rotation = Quaternion(0.730756, 0.571089, 0.0943502, 0.361872)
-bones/8/rotation = Quaternion(-0.311953, -0.139708, 0.523832, 0.780235)
-bones/9/rotation = Quaternion(0.605237, 0.789512, -0.0633189, 0.0796825)
-bones/10/rotation = Quaternion(-0.160415, 0.22289, 0.68003, 0.679813)
-bones/11/rotation = Quaternion(0.559467, 0.729615, 0.3198, -0.228882)
-bones/12/rotation = Quaternion(-0.526809, 0.429938, 0.186625, 0.709081)
+bones/1/rotation = Quaternion(0.129183, 0.103482, 0.557343, 0.813617)
+bones/2/rotation = Quaternion(0.744627, -0.382554, 0.0578704, 0.543907)
+bones/3/rotation = Quaternion(0.256469, -0.19219, 0.524046, 0.78909)
+bones/4/rotation = Quaternion(0.589097, -0.197461, 0.345492, 0.703285)
+bones/5/rotation = Quaternion(0.0671909, -0.380999, 0.522442, 0.759855)
+bones/6/rotation = Quaternion(0.651336, -0.324688, 0.282499, 0.624926)
+bones/7/rotation = Quaternion(0.725075, 0.574307, 0.0689446, 0.373744)
+bones/8/rotation = Quaternion(-0.30005, -0.110145, 0.547929, 0.773053)
+bones/9/rotation = Quaternion(0.583956, 0.80298, -0.0629688, 0.101256)
+bones/10/rotation = Quaternion(-0.1385, 0.210005, 0.678767, 0.689921)
+bones/11/rotation = Quaternion(0.560336, 0.728092, 0.312776, -0.240993)
+bones/12/rotation = Quaternion(-0.535511, 0.429496, 0.185458, 0.703112)
 
 [node name="Plane_001_14" parent="MainMesh/Sketchfab_model/root/GLTF_SceneRootNode" index="1"]
-transform = Transform3D(0.99681, 0.0625737, 0.0495358, -0.0570025, 0.992641, -0.106842, -0.0558567, 0.103677, 0.993041, 18.2526, 2.93714, 1.49293)
+transform = Transform3D(0.99632, 0.0690475, 0.0507766, -0.0634739, 0.992528, -0.104206, -0.0575924, 0.1006, 0.993259, 18.2526, 2.93714, 1.49293)
 
 [node name="AnimationPlayer" parent="MainMesh" index="1"]
 libraries = {
@@ -145,10 +144,6 @@ libraries = {
 }
 autoplay = "Animation"
 speed_scale = 2.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.14968, 0.276215, 0.195444)
-shape = SubResource("CapsuleShape3D_jjbwl")
 
 [node name="DeadMesh" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74471, 0, 0)
@@ -158,5 +153,9 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.72922, -0.478125, 0.299867)
 material_override = SubResource("StandardMaterial3D_ww4lo")
 mesh = SubResource("BoxMesh_pqrb0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0793457, 0.25238, 0.334717)
+shape = SubResource("BoxShape3D_8owrw")
 
 [editable path="MainMesh"]

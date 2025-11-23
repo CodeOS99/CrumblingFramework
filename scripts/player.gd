@@ -3,7 +3,7 @@ class_name Player extends CharacterBody3D
 var speed
 const WALK_SPEED := 5.0
 const SPRINT_SPEED := 8.0
-const JUMP_VELOCITY := 4.8
+const JUMP_VELOCITY := 15
 const SENSITIVITY := 0.004
 
 # bobbing
@@ -15,7 +15,7 @@ var t_bob = 0.0
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 
-var gravity = 9.8
+var gravity = 20
 
 var can_interact := false
 var interact_body: Node3D
@@ -76,6 +76,9 @@ func _process(delta: float) -> void:
 	if raycast.is_colliding():
 		curr_ray_coll = raycast.get_collider()
 		if curr_ray_coll.is_in_group("bug"):
+			can_interact = true
+			interact_body = curr_ray_coll
+		elif curr_ray_coll.is_in_group("glitch"):
 			can_interact = true
 			interact_body = curr_ray_coll
 	

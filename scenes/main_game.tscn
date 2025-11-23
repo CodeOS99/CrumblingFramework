@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://csh7mpin7pig6"]
+[gd_scene load_steps=33 format=3 uid="uid://csh7mpin7pig6"]
 
 [ext_resource type="Script" path="res://scripts/static_bug.gd" id="1_3tejf"]
 [ext_resource type="PackedScene" uid="uid://b0m27sbha1u6l" path="res://assets/bug/scene.gltf" id="1_7ckel"]
@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://cg3m37bqjb0b4" path="res://assets/fonts/RobotoMono-Regular.ttf" id="2_fgkx8"]
 [ext_resource type="Script" path="res://scripts/todo_list.gd" id="3_q3g2n"]
 [ext_resource type="PackedScene" uid="uid://bui6nvu0latsl" path="res://scenes/moving_bug.tscn" id="3_qr2gd"]
+[ext_resource type="Shader" path="res://scripts/shaders/glitch.gdshader" id="7_kj3lf"]
+[ext_resource type="Script" path="res://scripts/glitch.gd" id="7_vxdye"]
 
 [sub_resource type="Animation" id="Animation_35n46"]
 resource_name = "Animation"
@@ -136,8 +138,20 @@ tonemap_mode = 2
 [sub_resource type="BoxMesh" id="BoxMesh_6yfrd"]
 size = Vector3(96, 0.45, 61)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_aqklh"]
-size = Vector3(96, 0.45, 61)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x0o8e"]
+points = PackedVector3Array(-48, -0.225, -30.5, -48, 0.225, -30.5, 48, -0.225, -30.5, -48, -0.225, 30.5, -48, 0.225, 30.5, 48, 0.225, -30.5, 48, -0.225, 30.5, 48, 0.225, 30.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c2i85"]
+size = Vector3(10.47, 0.45, 6.49)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_20yjf"]
+points = PackedVector3Array(-5.235, -0.225, -3.245, -5.235, 0.225, -3.245, 5.235, -0.225, -3.245, -5.235, -0.225, 3.245, -5.235, 0.225, 3.245, 5.235, 0.225, -3.245, 5.235, -0.225, 3.245, 5.235, 0.225, 3.245)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lclma"]
+size = Vector3(4.705, 0.45, 4.86)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_43hku"]
+points = PackedVector3Array(2.3525, 0.225, 2.43, 2.3525, -0.225, 2.43, 2.3525, 0.225, -2.43, -2.3525, 0.225, 2.43, -2.3525, -0.225, 2.43, 2.3525, -0.225, -2.43, -2.3525, 0.225, -2.43, -2.3525, -0.225, -2.43)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pfwrm"]
 
@@ -149,31 +163,62 @@ noise = SubResource("FastNoiseLite_pfwrm")
 [sub_resource type="ViewportTexture" id="ViewportTexture_cv11a"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="BoxMesh" id="BoxMesh_sa1pr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1ikw"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l6o7r"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piccb"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1upfa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmslh"]
+render_priority = 0
+shader = ExtResource("7_kj3lf")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.5
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+shader_parameter/opacity = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7o110"]
+
 [node name="MainGame" type="Node3D"]
 
 [node name="MovingBug" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.076, 0, 7.49708)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.076, -0.168359, 7.49708)
 movement_area = NodePath("../StaticBody3D/MeshInstance3D")
 movement_speed = 15.0
 
 [node name="MovingBug2" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77794, 0, 21.6247)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77794, -0.168359, 21.6247)
 movement_area = NodePath("../StaticBody3D/MeshInstance3D")
 movement_speed = 15.0
 
 [node name="MovingBug3" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.6355, 0, -1.57773)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.6355, -0.168359, -1.57773)
 movement_area = NodePath("../StaticBody3D/MeshInstance3D")
 movement_speed = 15.0
 
 [node name="MovingBug4" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.587, 0, 18.8135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.587, -0.168359, 18.8135)
 movement_area = NodePath("../StaticBody3D/MeshInstance3D")
 movement_speed = 15.0
 
 [node name="MovingBug5" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3291, 0, 1.35544)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3291, -0.168359, 1.35544)
 movement_area = NodePath("../StaticBody3D/MeshInstance3D")
+movement_speed = 15.0
+
+[node name="MovingBug6" parent="." node_paths=PackedStringArray("movement_area") instance=ExtResource("3_qr2gd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.1517, -0.168359, 12.7806)
+movement_area = NodePath("../StaticBody3D/MeshInstance3D2")
 movement_speed = 15.0
 
 [node name="StaticBug" type="StaticBody3D" parent="." groups=["bug"]]
@@ -237,7 +282,26 @@ mesh = SubResource("BoxMesh_6yfrd")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_aqklh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.2218)
+shape = SubResource("ConvexPolygonShape3D_x0o8e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.8747, 0, 13.2218)
+mesh = SubResource("BoxMesh_c2i85")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.8747, 0, 13.2218)
+shape = SubResource("ConvexPolygonShape3D_20yjf")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.782, -4.36463, 13.0404)
+mesh = SubResource("BoxMesh_lclma")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.782, -4.36463, 13.0404)
+shape = SubResource("ConvexPolygonShape3D_43hku")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(2407, 1062)
@@ -259,12 +323,53 @@ theme_override_font_sizes/font_size = 75
 text = "// TODO
 
 // 1. Get rid of bugs
-// 2. Fix cracks which leaked through development
+// 2. Fix map glitches
 // 3. Check if dev paths work to finish game"
 script = ExtResource("3_q3g2n")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.22916, -17.5125)
 texture = SubResource("ViewportTexture_cv11a")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-0.104199, 0, 0.994556, 0, 1, 0, -0.994556, 0, -0.104199, 29.5867, -9, 0)
+pixel_size = 0.1
+text = "WARNING!
+You are out of bounds!
+Viewing this area now revokes
+your right to refund this application!"
+
+[node name="Glitch1" type="StaticBody3D" parent="." groups=["glitch"]]
+script = ExtResource("7_vxdye")
+
+[node name="mesh" type="MeshInstance3D" parent="Glitch1"]
+transform = Transform3D(1, 0, 0, 0, 0.787462, 0.616363, 0, -0.616363, 0.787462, 0, -0.140166, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_sa1pr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_r1ikw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Glitch1"]
+transform = Transform3D(1, 0, 0, 0, 0.787462, 0.616363, 0, -0.616363, 0.787462, 0, -0.140166, 0)
+shape = SubResource("ConvexPolygonShape3D_l6o7r")
+
+[node name="Glitch2" type="StaticBody3D" parent="." groups=["glitch"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.638, -3.956, 13.577)
+script = ExtResource("7_vxdye")
+
+[node name="mesh" type="MeshInstance3D" parent="Glitch2"]
+transform = Transform3D(0.534765, 0.845001, 0, -0.845001, 0.534765, 0, 0, 0, 1, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_piccb")
+mesh = SubResource("CylinderMesh_1upfa")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_xmslh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Glitch2"]
+transform = Transform3D(0.503367, 0.864073, 0, -0.864073, 0.503367, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_7o110")
+
+[node name="FallCheck" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallCheck"]
 
 [editable path="StaticBug/MainMesh"]
