@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dd7cy1gsxgxes"]
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 75
+text = "Thanks for fixing my game!"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "This game is currently super unfinished, like ironically
+the game's whole thing was supposed to be that it was
+incomplete as a joke and the main dev forgot to make it.
+But its kind of true right now, the game is almost completely
+incomplete. I want to add more tasks(with more depth, currently
+this game can also be called press E simulator) and some form
+of actual progression."

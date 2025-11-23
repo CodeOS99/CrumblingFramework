@@ -86,6 +86,9 @@ func _process(delta: float) -> void:
 	
 	if can_interact and Input.is_action_pressed("interact"):
 		interact_body.interact()
+	
+	if Globals.killed_bugs == Globals.total_bugs and Globals.removed_glitches == Globals.total_glitches:
+		get_tree().change_scene_to_file("res://scenes/end.tscn")
 
 func _headbob(time: float) -> Vector3:
 	var pos = Vector3.ZERO

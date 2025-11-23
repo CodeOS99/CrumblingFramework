@@ -356,19 +356,49 @@ surface_material_override/0 = SubResource("StandardMaterial3D_r1ikw")
 transform = Transform3D(1, 0, 0, 0, 0.787462, 0.616363, 0, -0.616363, 0.787462, 0, -0.140166, 0)
 shape = SubResource("ConvexPolygonShape3D_l6o7r")
 
+[node name="Glitch4" type="StaticBody3D" parent="." groups=["glitch"]]
+transform = Transform3D(0.666311, -0.745674, 0, 0.745674, 0.666311, 0, 0, 0, 1, 23.5116, 0, 17.915)
+script = ExtResource("7_vxdye")
+
+[node name="mesh" type="MeshInstance3D" parent="Glitch4"]
+transform = Transform3D(1, 0, 0, 0, 0.787462, 0.616363, 0, -0.616363, 0.787462, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_sa1pr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_r1ikw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Glitch4"]
+transform = Transform3D(1, 0, 0, 0, 0.787462, 0.616363, 0, -0.616363, 0.787462, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_l6o7r")
+
 [node name="Glitch2" type="StaticBody3D" parent="." groups=["glitch"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.638, -3.956, 13.577)
 script = ExtResource("7_vxdye")
 
 [node name="mesh" type="MeshInstance3D" parent="Glitch2"]
-transform = Transform3D(0.534765, 0.845001, 0, -0.845001, 0.534765, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.112128, -0.993694, 0, 0.993694, -0.112128, 0, 0, 0)
 material_overlay = SubResource("StandardMaterial3D_piccb")
 mesh = SubResource("CylinderMesh_1upfa")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_xmslh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Glitch2"]
-transform = Transform3D(0.503367, 0.864073, 0, -0.864073, 0.503367, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.111469, -0.993768, 0, 0.993768, -0.111469, 0, 0, 0)
+shape = SubResource("CylinderShape3D_7o110")
+
+[node name="Glitch3" type="StaticBody3D" parent="." groups=["glitch"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.404, 0.81, -10.9351)
+script = ExtResource("7_vxdye")
+
+[node name="mesh" type="MeshInstance3D" parent="Glitch3"]
+transform = Transform3D(0.873228, -0.487311, 0, 0.487311, 0.873228, 0, 0, 0, 1, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_piccb")
+mesh = SubResource("CylinderMesh_1upfa")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_xmslh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Glitch3"]
+transform = Transform3D(0.872922, -0.48786, 0, 0.48786, 0.872922, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_7o110")
 
 [node name="FallCheck" type="Area3D" parent="."]
